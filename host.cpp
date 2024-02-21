@@ -75,5 +75,6 @@ void host::select_gNB_Conf(const QString &homePath, Ui_MainWindow *ui)
         QString startRelativePath = homeDir.relativeFilePath(confpath);
         confpath = "-O ../../../" + startRelativePath;
         ui->textBrowser->setText(confpath.section('/', -1));
-       }
+    }
 }
+

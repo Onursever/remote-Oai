@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QString qssFilePath = "/home/onur/Downloads/Integrid/Integrid.qss";
+    QString qssFilePath = "/home/nuc/Downloads/Integrid.qss";
 
     // QSS dosyasını okuyun
     QFile qssFile(qssFilePath);

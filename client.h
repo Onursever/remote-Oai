@@ -2,6 +2,7 @@
 #define CLIENT_H
 #include <QString>
 #include <QObject>
+#include <QProcess>
 
 class Ui_MainWindow;
 
@@ -25,7 +26,7 @@ public:
     QString imsi;
     QString compensation;
     QString e;
-
+    QProcess startUE_server;
 signals:
 
 public slots:
@@ -33,7 +34,7 @@ public slots:
     void select_UE_Conf(const QString& homePath, Ui_MainWindow *ui);
     void checkUE_conf(Ui_MainWindow *ui);
     QString generate_ScriptContent_UE();
-    QString generate_ScriptContent_UE_Server();
+    QString generate_ScriptContent_UE_Server(const QString& UEpath);
     bool writeToFile_UE(const QString& filePath, const QString& content);
 
 };

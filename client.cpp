@@ -71,17 +71,21 @@ QString client::generate_ScriptContent_UE()
 
 }
 
-QString client::generate_ScriptContent_UE_Server()
+QString client::generate_ScriptContent_UE_Server(const QString& UEpath)
 {
     QString scriptContentUE_Server;
     scriptContentUE_Server += "#!/bin/bash\n";
+    scriptContentUE_Server += "source_file=\"" + UEpath +"\"\n";
     scriptContentUE_Server += "destination_name=\"" + name + "\"\n";
     scriptContentUE_Server += "destination_ip=\"" + ip + "\"\n";
+    scriptContentUE_Server += "destination_path=\"/home/" + name + "/\"\n";
     scriptContentUE_Server += "password=\"" + password + "\"\n";
+    scriptContentUE_Server += "sshpass -p \"$password\" scp \"$source_file\" \"$destination_name@$destination_ip:$destination_path\"\n";
     scriptContentUE_Server += "sshpass -p \"$password\" ssh -t \"$destination_name@$destination_ip\" << EOF\n";
-    scriptContentUE_Server += "cd ~/openairinterface5g || exit\n";
-    scriptContentUE_Server += "source oaienv || exit\n";
-    scriptContentUE_Server += "cd cmake_targets/ran_build/build || exit\n";
+    scriptContentUE_Server += "chmod +x server_UE_start.sh\n";
+    scriptContentUE_Server += "./server_UE_start.sh\n";
+    scriptContentUE_Server += "EOF";
+    return scriptContentUE_Server;
 }
 
 bool client::writeToFile_UE(const QString &filePath, const QString &content)
